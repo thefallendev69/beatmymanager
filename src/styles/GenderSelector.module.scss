@@ -1,0 +1,28 @@
+.genderSelector {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.8rem;
+
+  &__title {
+    margin: 0 0 0.6rem;
+  }
+
+  &__options {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  &__option {
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #e5e7eb;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+
+    &--active {
+      background: #16a34a;
+      border-color: #22c55e;
+      color: #ecfdf5;
+    }
+  }
+}
