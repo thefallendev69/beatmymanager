@@ -11,6 +11,7 @@ interface FlowState {
   isPerson: boolean | null;
   validationStatus: 'idle' | 'running' | 'done' | 'error';
   gender: Gender | null;
+  name: string;
   error: string | null;
 }
 
@@ -23,6 +24,7 @@ const initialState: FlowState = {
   isPerson: null,
   validationStatus: 'idle',
   gender: null,
+  name: '',
   error: null,
 };
 
@@ -67,10 +69,13 @@ const flowSlice = createSlice({
     setGender(state, action: PayloadAction<Gender>) {
       state.gender = action.payload;
     },
+    setName(state, action: PayloadAction<string>) {
+      state.name = action.payload;
+    },
   },
 });
 
-export const { setImage, setValidationRunning, setValidationResult, setValidationError, setGender } =
+export const { setImage, setValidationRunning, setValidationResult, setValidationError, setGender, setName } =
   flowSlice.actions;
 
 export default flowSlice.reducer;
