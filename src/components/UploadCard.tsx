@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import {
   setImage,
@@ -16,11 +16,6 @@ export default function UploadCard() {
   const flow = useAppSelector((state) => state.flow);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [localError, setLocalError] = useState<string | null>(null);
-
-  const canShowGender = useMemo(
-    () => flow.validationStatus === 'done' && flow.isBlurry === false && flow.isPerson === true,
-    [flow.isBlurry, flow.isPerson, flow.validationStatus],
-  );
 
   const onFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -82,6 +77,7 @@ export default function UploadCard() {
             <strong>File:</strong> {flow.fileName}
           </p>
           <button type="button" onClick={runValidation} disabled={flow.validationStatus === 'running'}>
+            {flow.validationStatus === 'running' && <span className={styles.uploadCard__spinner} aria-hidden="true" />}
             {flow.validationStatus === 'running' ? 'Validating...' : 'Run Client Validation'}
           </button>
         </div>
@@ -102,7 +98,7 @@ export default function UploadCard() {
 
       {flow.validationStatus === 'error' && <p className={styles.uploadCard__error}>{flow.error}</p>}
 
-      {canShowGender && <GenderSelector />}
+      {flow.previewUrl && <GenderSelector />}
     </article>
   );
 }
