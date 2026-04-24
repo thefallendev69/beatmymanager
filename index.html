@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeatMyManager</title>
+  </head>
+  <body>
+    <div id="root" style="font-family: system-ui, sans-serif; padding: 1rem; color: #e5e7eb; background: #111827; min-height: 100vh;">
+      Loading BeatMyManager...
+    </div>
+
+    <script>
+      window.__APP_BOOTED__ = false;
+      window.setTimeout(() => {
+        if (window.__APP_BOOTED__) {
+          return;
+        }
+
+        const root = document.getElementById('root');
+        if (!root) {
+          return;
+        }
+
+        root.innerHTML = `
+          <h2 style="margin:0 0 .75rem;">App failed to load</h2>
+          <p style="margin:0 0 .5rem;">This usually means GitHub Pages is serving repository source files instead of the built app.</p>
+          <p style="margin:0;">Go to <strong>Settings → Pages</strong> and set <strong>Source = GitHub Actions</strong>, then re-run the deploy workflow.</p>
+        `;
+      }, 4000);
+    </script>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
